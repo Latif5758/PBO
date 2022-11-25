@@ -73,6 +73,7 @@
 				<?php endwhile ?>
 			</select>
 			<br>
+			<a class="btn btn-danger" href="./index.php">Kembali</a>
 			<button class="btn btn-primary" type="submit" name="add-mk-submit">Tambah MK</button>
 		</form>
 		<br>
