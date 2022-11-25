@@ -4,6 +4,7 @@
 	$mid = $_GET["mahasiswa"];
 	$mkid = $_GET["mata_kuliah"];
 
+	// medapatkan data matakuliah dan nilai dari mata kuliah yang dipilih
 	$sql = ociparse($conn, "
 		SELECT m.mahasiswa_nama, mk.mata_kuliah_nama FROM mahasiswa_mata_kuliah mmk
 		    JOIN mahasiswa m
@@ -14,6 +15,7 @@
 	oci_execute($sql);
 	$row = oci_fetch_array($sql);
 
+	// mendapatkan nilai dari mata kuliah yang dipilih
 	$sql2 = ociparse($conn, "
 		SELECT * FROM mahasiswa_nilai
 		WHERE mahasiswa_nilai_mahasiswa_id=". $mid ." AND mahasiswa_nilai_mata_kuliah_id=". $mkid);
@@ -23,6 +25,7 @@
 	if (isset($_POST["submit"])) {
 		$nilai = $_POST["mk-nilai"];
 		if ($row2) {
+			// ketika nilai ada maka update
 			$sql = ociparse($conn, "declare begin p_mahasiswa_nilai('', $mid, $mkid, $nilai, 'update'); end;");
 			ociexecute($sql);
 
@@ -34,6 +37,7 @@
 				";
 			}
 		} else {
+			// ketika tidak ada nilai maka insert
 			$randId = rand(100, 10000);
 			$sql = ociparse($conn, "declare begin p_mahasiswa_nilai($randId, $mid, $mkid, $nilai, 'insert'); end;");
 			ociexecute($sql);

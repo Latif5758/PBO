@@ -2,6 +2,7 @@
 	include "../connection.php";
 
 	if (isset($_POST["submit"])) {
+		// mendapatkan data dari post
 		$mId = rand(100, 10000);
 		$mNrp = $_POST["mahasiswa_nrp"];
 		$mNama = $_POST["mahasiswa_nama"];
@@ -9,6 +10,7 @@
 		$sql = ociparse($conn, "declare begin p_mahasiswa($mId, '$mNrp', '$mNama', 'insert'); end;");
 		ociexecute($sql);
 
+		// kondisi ketika berhasil dan redirect
 		if (oci_num_rows($sql) > 0) {
 			echo "
 				<script>alert('mahasiswa berhasil ditambahkan');

@@ -1,6 +1,7 @@
 <?php 
 	include '../connection.php';
 
+	// medapatkan data mata kuliah
 	$sql = ociparse($conn, "SELECT * FROM mata_kuliah");
 	oci_execute($sql);
 ?>
