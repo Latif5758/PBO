@@ -2,7 +2,7 @@
 	include "../connection.php";
 
 	if (isset($_POST["submit"])) {
-		$mId = $_POST["mata_kuliah_id"];
+		$mId = rand(100, 10000);
 		$mNama = $_POST["mata_kuliah_nama"];
 		$mDes = $_POST["mata_kuliah_deskripsi"];
 
@@ -32,11 +32,6 @@
 	<h3>Tambah Mata Kuliah</h3>
 	<br>
 	<form style="width:30vw" method="POST">
-		<div class="row">
-			<label class="col"  for="mata_kuliah_id">ID</label>
-			<input class="col"  type="number" name="mata_kuliah_id" id="mata_kuliah_id">
-		</div>
-		<br>
 		<div class="row">
 			<label class="col" for="mata_kuliah_nama">Nama</label>
 			<input class="col" type="text" name="mata_kuliah_nama" id="mata_kuliah_nama">
