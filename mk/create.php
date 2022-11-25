@@ -2,13 +2,16 @@
 	include "../connection.php";
 
 	if (isset($_POST["submit"])) {
+		// mendapatkan data dari form post
 		$mId = rand(100, 10000);
 		$mNama = $_POST["mata_kuliah_nama"];
 		$mDes = $_POST["mata_kuliah_deskripsi"];
 
+		// insert data
 		$sql = ociparse($conn, "declare begin p_mata_kuliah($mId, '$mNama', '$mDes', 'insert'); end;");
 		ociexecute($sql);
 
+		// kondisi ketika berhasil dan redirect
 		if (oci_num_rows($sql) > 0) {
 			echo "
 				<script>alert('mata kuliah berhasil ditambahkan');

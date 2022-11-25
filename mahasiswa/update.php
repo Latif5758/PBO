@@ -3,11 +3,13 @@
 
 	$id = $_GET["mahasiswa"];
 
+	// mendapatkan data mahasiswa
 	$sql = ociparse($conn, "SELECT * FROM mahasiswa WHERE mahasiswa_id=" . $id);
 	oci_execute($sql);
 	$row = oci_fetch_array($sql);
 
 	if (isset($_POST["submit"])) {
+		// mengambil data dari post
 		$mId = $_POST["mahasiswa_id"];
 		$mNrp = $_POST["mahasiswa_nrp"];
 		$mNama = $_POST["mahasiswa_nama"];
@@ -15,6 +17,7 @@
 		$sql = ociparse($conn, "declare begin p_mahasiswa($mId, '$mNrp', '$mNama', 'update'); end;");
 		ociexecute($sql);
 
+		// kondisi ketika berhasil dan redirect
 		if (oci_num_rows($sql) > 0) {
 			echo "
 				<script>alert('mahasiswa berhasil diubah');

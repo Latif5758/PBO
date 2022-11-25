@@ -3,11 +3,13 @@
 
 	$id = $_GET["mata_kuliah"];
 
+	// mendapatkan data mata kuliah
 	$sql = ociparse($conn, "SELECT * FROM mata_kuliah WHERE mata_kuliah_id=" . $id);
 	oci_execute($sql);
 	$row = oci_fetch_array($sql);
 
 	if (isset($_POST["submit"])) {
+		// mendapatkan data dari form post
 		$mId = $_POST["mata_kuliah_id"];
 		$mNama = $_POST["mata_kuliah_nama"];
 		$mDes = $_POST["mata_kuliah_deskripsi"];
@@ -15,6 +17,7 @@
 		$sql = ociparse($conn, "declare begin p_mata_kuliah($mId, '$mNama', '$mDes', 'update'); end;");
 		ociexecute($sql);
 
+		// kondisi ketika berhasil dan redirect
 		if (oci_num_rows($sql) > 0) {
 			echo "
 				<script>alert('mata kuliah berhasil diubah');
